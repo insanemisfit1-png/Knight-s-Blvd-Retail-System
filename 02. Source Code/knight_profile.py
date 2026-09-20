@@ -1,19 +1,142 @@
-print("Welcome to project Knight.")
-print("Knight AI is under construction.")
-print("Built by Nkosinathi.")
-print("Brick by brick.")
 
-from product import Product
-from customer import Customer
-from order import Order
-from receipt import Receipt
-from inventory import Inventory
-from store import Store
-from database import Database
+product = "Black Hoodie"
+size = "Medium"
+price = "799.99"
+color = "Black"
+style = "Streetwear"
+age = 22
+name = "Bhlomingtn"
 
 
-db = Database()
-db.create_tables()
+name = input("What's your name?")
+print("Welcome,", name)
+
+product = input("what product are you looking for?")
+size = input("what size do you need?") 
+
+
+budget = 600
+if budget >= 800:
+      print("Premium Hoodie")
+else:
+      print("Standard Hoodie") 
+
+
+      budget = 1200
+
+      if budget >= 1200:
+        print("Luxury Collection")
+      elif budget>= 800:
+          print("Premium Collection")
+      else:
+          print("Essential Collection")
+
+        
+
+
+
+
+budget = int( input("what's your budget?"))
+print("Welcome,", name)
+
+if budget>= 1200:
+        print("We recommennd our Luxury Collection.")
+elif budget>= 800:
+          print("We recommend our Premium Collection.")
+else:
+          print("We recommend our Essential Collection.")
+
+
+# Abstract budget class and a concrete implementation
+from abc import ABC, abstractmethod
+
+
+class budget(ABC):
+  """Abstract budget interface."""
+
+  @abstractmethod
+  def set_budget(self, amount: float):
+    pass
+
+  @abstractmethod
+  def get_budget(self) -> float:
+    pass
+
+  @abstractmethod
+  def recommend_collection(self) -> str:
+    pass
+
+  @abstractmethod
+  def apply_discount(self, price: float) -> float:
+    pass
+
+
+class BudgetImpl(budget):
+  """Concrete implementation of budget logic."""
+
+  def __init__(self, amount: float = 0.0):
+    self._budget = float(amount)
+
+  def set_budget(self, amount: float):
+    self._budget = float(amount)
+
+  def get_budget(self) -> float:
+    return self._budget
+
+  def recommend_collection(self) -> str:
+    if self._budget >= 1200:
+      return "Luxury Collection"
+    if self._budget >= 800:
+      return "Premium Collection"
+    return "Essential Collection"
+
+  def apply_discount(self, price: float) -> float:
+    """Apply a simple discount based on budget tiers.
+
+    - Luxury: 20% off
+    - Premium: 10% off
+    - Essential: 0% off
+    """
+    if price is None:
+      return 0.0
+    p = float(price)
+    if self._budget >= 1200:
+      return round(p * 0.80, 2)
+    if self._budget >= 800:
+      return round(p * 0.90, 2)
+    return round(p, 2)
+
+
+# Example usage (non-intrusive): create an instance if budget variable exists
+try:
+  _b = BudgetImpl(budget)
+except Exception:
+  _b = BudgetImpl(0)
+
+
+
+
+
+product = product[0]  # Assuming the first product is the one to sell
+product = self.inventory.search_by_name(product_name)
+print("    store received:", repr(product_name))  # Debugging line     
+
+if item.name.lower() == product_name.lower():
+                product = item
+                break
+
+
+               print( 
+                    f"Customer: {sale[0]}", 
+                    f"Product: {sale[1]}", 
+                    f"Quantity: {sale[2]}", 
+                    f"Total: R{sale[3]:.2f}", 
+                    f"Date: {sale[4]}")
+
+
+
+
+
 hoodie  =   Product(
     "Black Hoodie",
     "Medium",
@@ -194,6 +317,24 @@ customer15 = Customer("Sarah Wilson", "sarah@email.com", "0712345978", "Johannes
 order15 = Order("0R0015", customer15, tank_top, 2)
 order15.display_order()
 
+inventory.add_product(hoodie)
+inventory.add_product(tshirt)
+inventory.add_product(cargo_pants)
+inventory.add_product(denim_jeans)
+inventory.add_product(shirt)
+inventory.add_product(sweater)
+inventory.add_product(windbreaker)
+inventory.add_product(bomber_jacket)
+inventory.add_product(baseball_cap)
+inventory.add_product(bucket_hat)
+inventory.add_product(beanie)
+inventory.add_product(panel_cap)
+inventory.add_product(wide_leg_pants)
+inventory.add_product(track_pants)
+inventory.add_product(tank_top)
+
+print("Inventory after adding products:", inventory.total_products())
+
 db.update_stock(order1.product)
 db.update_stock(order2.product)
 db.update_stock(order3.product)
@@ -237,7 +378,7 @@ if not db.customer_exists(customer4.email):
 if not db.customer_exists(customer5.email):
     db.save_customer(customer5)
 if not db.customer_exists(customer6.email):
-        db.save_customer(customer6)
+    db.save_customer(customer6)
 if not db.customer_exists(customer7.email):
     db.save_customer(customer7)
 if not db.customer_exists(customer8.email):
@@ -259,73 +400,4 @@ for order in orders:
     if order.checkout():
         print(f"Order {order.order_id} for {order.customer.name} has been successfully checked out.")
 order.checkout()
-db.save_sale(order)
-
-products = db.load_products()
-for product in products:
-    print(product)
-
-def close(self):
-    self.connection.close()
-    db.close()
-
-def main():
-    while True:
-        print("\n=====  Knight's Blvd   =====")
-        print("1. View Products")
-        print("2. Add Products")
-        print("3. Search Product")
-        print("4. Add Customer")
-        print("5. Place Order")
-        print("6. View Sales")
-        print("7. Exit")
-        choice  =   input("Choose an option:    ")
-
-        if choice == "7":
-            print("Thank you for using Knight's Blvd.")
-            db.close()
-            break
-        
-        if choice == "1" :   
-            print("Viewing products...")
-        
-        if choice == "2":
-            print("Adding products...")
-        
-        if choice == "3":
-            print("Searching products...")
-        
-        if choice == "4":
-            print("Adding customer...")
-        
-        if choice == "5":
-            print("Placing order...")
-        
-        if choice == "6":
-            print("Viewing sales...")
-
-        if choice == "7":
-            print("Thank you for using Knight's Blvd.")
-            db.close()
-            break
-
-        if __name__ == "__main__":
-            main()
-
-
-receipt = Receipt(order1)
-receipt.generate_receipt()
-
-
-
-
-
-
-
-
-
-
-
-
-
 

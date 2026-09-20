@@ -37,6 +37,21 @@ print("==========================")
 
 
 
+inventory.add_product(hoodie)
+inventory.add_product(tshirt)
+inventory.add_product(cargo_pants)
+inventory.add_product(denim_jeans)
+inventory.add_product(shirt)
+inventory.add_product(sweater)
+inventory.add_product(windbreaker)
+inventory.add_product(bomber_jacket)
+inventory.add_product(baseball_cap)
+inventory.add_product(bucket_hat)
+inventory.add_product(beanie)
+inventory.add_product(panel_cap)
+inventory.add_product(wide_leg_pants)
+inventory.add_product(track_pants)
+inventory.add_product(tank_top)
 
 
 

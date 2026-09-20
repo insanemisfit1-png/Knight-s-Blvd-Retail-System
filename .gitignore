@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.db
+*.sqlite
+*.sqlite3
+customer_profile.text
